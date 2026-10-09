@@ -121,7 +121,7 @@ export default function Hero() {
           <Icon name="facebook" size={15} />
         </a>
         <a
-          href="https://www.linkedin.com/"
+          href="https://www.linkedin.com/in/reem-moustafa-a3920724a"
           target="_blank"
           rel="noreferrer"
           aria-label="LinkedIn">

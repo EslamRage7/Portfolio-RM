@@ -24,13 +24,13 @@ export default function Contact() {
           </a>
           <div className="contact-socials">
             <a
-              href="https://www.facebook.com/"
+              href="https://www.facebook.com/share/19pL6u7YYV/"
               target="_blank"
               rel="noreferrer">
               Facebook <Icon name="arrowUpRight" size={13} />
             </a>
             <a
-              href="https://www.linkedin.com/"
+              href="https://www.linkedin.com/in/reem-moustafa-a3920724a"
               target="_blank"
               rel="noreferrer">
               LinkedIn <Icon name="arrowUpRight" size={13} />
