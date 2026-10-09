@@ -49,9 +49,9 @@ export default function Preloader() {
       <div className="preloader-mark" aria-hidden="true">
         <div className="preloader-cube">
           <span className="cube-front">R</span>
-          <span className="cube-back">R</span>
-          <span className="cube-right" />
-          <span className="cube-left" />
+          <span className="cube-back">E</span>
+          <span className="cube-right">E</span>
+          <span className="cube-left">M</span>
           <span className="cube-top" />
           <span className="cube-bottom" />
         </div>

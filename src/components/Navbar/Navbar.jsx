@@ -53,8 +53,13 @@ export default function Navbar() {
         href="#home"
         aria-label="Reem Moustafa — Home"
         onClick={() => setActiveSection("home")}>
-        <span className="photoshop-logo" aria-hidden="true">
-          Ps
+        <span className="nav-cube" aria-hidden="true">
+          <i className="nav-cube-front">R</i>
+          <i className="nav-cube-back">M</i>
+          <i className="nav-cube-right">M</i>
+          <i className="nav-cube-left" />
+          <i className="nav-cube-top" />
+          <i className="nav-cube-bottom" />
         </span>
       </a>
       <button

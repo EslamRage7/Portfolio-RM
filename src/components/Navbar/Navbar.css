@@ -34,36 +34,49 @@
   text-shadow: 0 5px 18px rgb(169 150 255 / 38%);
 }
 
-.photoshop-logo {
+.site-nav .signature .nav-cube {
+  position: relative;
+  display: block;
+  width: 30px;
+  height: 30px;
+  color: transparent;
+  background-color: transparent;
+  transform: rotateX(-18deg) rotateY(-28deg);
+  transform-style: preserve-3d;
+}
+
+.nav-cube i {
+  position: absolute;
   display: grid;
   place-items: center;
   width: 30px;
-  height: 28px;
-  border: 1px solid rgb(49 168 255 / 42%);
-  border-radius: 6px;
-  background: linear-gradient(145deg, #10263b, #0b1725);
-  box-shadow: inset 0 1px 0 rgb(255 255 255 / 8%);
-  color: #9bd5ff;
-  font: 700 16px/1 Manrope, sans-serif;
-  letter-spacing: -1.2px;
-  transition:
-    border-color 220ms ease,
-    box-shadow 220ms ease,
-    transform 220ms ease;
+  height: 30px;
+  border: 1px solid #c5b9ffb0;
+  background: linear-gradient(145deg, #a996ff40, #675bb533);
+  box-shadow: inset 0 0 14px #a996ff1f;
+  backface-visibility: hidden;
+  font-style: normal;
 }
 
-.site-nav .signature .photoshop-logo {
-  background: linear-gradient(145deg, #10263b, #0b1725);
-  color: #9bd5ff;
+.nav-cube .nav-cube-front,
+.nav-cube .nav-cube-back {
+  color: #e8e1ff;
+  font: 800 18px/1 Manrope, sans-serif;
+  text-shadow: 0 0 12px #a996ffb0;
 }
 
-.signature:hover .photoshop-logo {
-  border-color: rgb(49 168 255 / 75%);
-  box-shadow:
-    0 0 16px rgb(49 168 255 / 18%),
-    inset 0 1px 0 rgb(255 255 255 / 10%);
-  transform: scale(1.04);
+.nav-cube .nav-cube-right {
+  color: #e8e1ff;
+  font: 800 16px/1 Manrope, sans-serif;
+  text-shadow: 0 0 12px #a996ffb0;
 }
+
+.nav-cube .nav-cube-front { transform: translateZ(15px); }
+.nav-cube .nav-cube-back { transform: rotateY(180deg) translateZ(15px); }
+.nav-cube .nav-cube-right { transform: rotateY(90deg) translateZ(15px); background: #a996ff55; }
+.nav-cube .nav-cube-left { transform: rotateY(-90deg) translateZ(15px); background: #8172db55; }
+.nav-cube .nav-cube-top { transform: rotateX(90deg) translateZ(15px); background: #c3b7ff55; }
+.nav-cube .nav-cube-bottom { transform: rotateX(-90deg) translateZ(15px); background: #51478f88; }
 
 .nav-items {
   display: flex;
