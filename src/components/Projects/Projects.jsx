@@ -33,10 +33,12 @@ export default function Projects() {
   const [opened, setOpened] = useState(null);
   const [isClosing, setIsClosing] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [selectedImage, setSelectedImage] = useState(null);
   const closeTimer = useRef(null);
   const active = folders.find((folder) => folder.id === opened);
   const closeFolder = useCallback(() => {
     window.clearTimeout(closeTimer.current);
+    setSelectedImage(null);
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       setOpened(null);
       setIsClosing(false);
@@ -51,7 +53,18 @@ export default function Projects() {
   useEffect(() => {
     if (!active) return;
     const onKey = (e) => {
-      if (e.key === "Escape") closeFolder();
+      if (e.key === "Escape") {
+        if (selectedImage !== null) setSelectedImage(null);
+        else closeFolder();
+      }
+      if (selectedImage !== null && e.key === "ArrowRight") {
+        setSelectedImage((index) => (index + 1) % active.images.length);
+      }
+      if (selectedImage !== null && e.key === "ArrowLeft") {
+        setSelectedImage(
+          (index) => (index - 1 + active.images.length) % active.images.length,
+        );
+      }
     };
     document.addEventListener("keydown", onKey);
     document.body.classList.add("folder-overlay-active");
@@ -59,7 +72,7 @@ export default function Projects() {
       document.removeEventListener("keydown", onKey);
       document.body.classList.remove("folder-overlay-active");
     };
-  }, [active, closeFolder]);
+  }, [active, closeFolder, selectedImage]);
   useEffect(() => () => window.clearTimeout(closeTimer.current), []);
   return (
     <section className="projects-section section-wrap" id="work">
@@ -84,65 +97,67 @@ export default function Projects() {
           type="button"
           aria-label="Previous project"
           onClick={() =>
-            setCurrentIndex((index) => (index - 1 + folders.length) % folders.length)
+            setCurrentIndex(
+              (index) => (index - 1 + folders.length) % folders.length,
+            )
           }>
           ←
         </button>
         <div className="project-carousel-stage">
-        {folders.map((folder, index) => (
-          <div
-            className={
-              "project-slide " +
-              (index === currentIndex
-                ? "project-slide-active"
-                : index === (currentIndex - 1 + folders.length) % folders.length
-                  ? "project-slide-previous"
-                  : index === (currentIndex + 1) % folders.length
-                    ? "project-slide-next"
-                    : "project-slide-hidden")
-            }
-            key={folder.id}>
-            <button
-              type="button"
+          {folders.map((folder, index) => (
+            <div
               className={
-                "folder-card folder-" +
-                folder.color +
-                (opened === folder.id ? " folder-active" : "") +
-                " w-100 h-100"
+                "project-slide " +
+                (index === currentIndex
+                  ? "project-slide-active"
+                  : index ===
+                      (currentIndex - 1 + folders.length) % folders.length
+                    ? "project-slide-previous"
+                    : index === (currentIndex + 1) % folders.length
+                      ? "project-slide-next"
+                      : "project-slide-hidden")
               }
-              onClick={() => {
-                window.clearTimeout(closeTimer.current);
-                setIsClosing(false);
-                if (index === currentIndex) setOpened(folder.id);
-                else setCurrentIndex(index);
-              }}
-              aria-haspopup={index === currentIndex ? "dialog" : undefined}
-              aria-label={
-                (index === currentIndex ? "Open " : "Select ") +
-                folder.name +
-                " folder"
-              }>
-              <span className="folder-tab" />
-              <span className="folder-paper">
-                <i>✳</i>
-
-                <small>{String(folder.images.length).padStart(2, "0")} IMAGES</small>
-                <b>{folder.name}</b>
-                <span className="folder-preview">
-                  {folder.images.slice(0, 2).map(([name, image]) => (
-                    <img key={name} src={image} alt="" />
-                  ))}
+              key={folder.id}>
+              <button
+                type="button"
+                className={
+                  "folder-card folder-" +
+                  folder.color +
+                  (opened === folder.id ? " folder-active" : "") +
+                  " w-100 h-100"
+                }
+                onClick={() => {
+                  window.clearTimeout(closeTimer.current);
+                  setIsClosing(false);
+                  if (index === currentIndex) setOpened(folder.id);
+                  else setCurrentIndex(index);
+                }}
+                aria-haspopup={index === currentIndex ? "dialog" : undefined}
+                aria-label={
+                  (index === currentIndex ? "Open " : "Select ") +
+                  folder.name +
+                  " folder"
+                }>
+                <span className="folder-tab" />
+                <span className="folder-paper">
+                  <b>{folder.name}</b>
+                  <span className="folder-preview">
+                    {folder.images.slice(0, 2).map(([name, image]) => (
+                      <img key={name} src={image} alt="" />
+                    ))}
+                  </span>
                 </span>
-              </span>
-            </button>
-          </div>
-        ))}
+              </button>
+            </div>
+          ))}
         </div>
         <button
           className="project-carousel-arrow project-carousel-next"
           type="button"
           aria-label="Next project"
-          onClick={() => setCurrentIndex((index) => (index + 1) % folders.length)}>
+          onClick={() =>
+            setCurrentIndex((index) => (index + 1) % folders.length)
+          }>
           →
         </button>
       </div>
@@ -154,47 +169,107 @@ export default function Projects() {
 
       {active &&
         createPortal(
-          <div
-            className={
-              "folder-overlay" + (isClosing ? " folder-overlay-closing" : "")
-            }
-            role="presentation"
-            onMouseDown={(e) => {
-              if (e.target === e.currentTarget) closeFolder();
-            }}>
+          <>
             <div
-              className={"folder-dialog folder-" + active.color}
-              role="dialog"
-              aria-modal="true"
-              aria-labelledby="folder-dialog-title">
-              <div className="folder-dialog-top">
-                <button onClick={closeFolder} aria-label="Close project folder">
-                  CLOSE <b>×</b>
-                </button>
-              </div>
-              <h3 id="folder-dialog-title">
-                {active.name}
-                <span> ↘</span>
-              </h3>
-              <div className="folder-gallery">
-                {active.images.map(([name, image], i) => (
-                  <figure
-                    className={"gallery-photo gallery-photo-" + i}
-                    key={name}
-                    style={{
-                      "--image-index": i,
-                      "--image-count": active.images.length,
-                    }}>
-                    <img src={image} alt={name + " design image"} />
-                    <figcaption></figcaption>
-                  </figure>
-                ))}
-              </div>
-              <div className="folder-dialog-foot">
-                <button onClick={closeFolder}>BACK TO FOLDERS ↑</button>
+              className={
+                "folder-overlay" + (isClosing ? " folder-overlay-closing" : "")
+              }
+              role="presentation"
+              onMouseDown={(e) => {
+                if (e.target === e.currentTarget) closeFolder();
+              }}>
+              <div
+                className={"folder-dialog folder-" + active.color}
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="folder-dialog-title">
+                <div className="folder-dialog-top">
+                  <button
+                    onClick={closeFolder}
+                    aria-label="Close project folder">
+                    CLOSE <b>×</b>
+                  </button>
+                </div>
+                <h3 id="folder-dialog-title">
+                  {active.name}
+                  <span> ↘</span>
+                </h3>
+                <div className="folder-gallery">
+                  {active.images.map(([name, image], i) => (
+                    <figure
+                      className={"gallery-photo gallery-photo-" + i}
+                      key={name}
+                      style={{
+                        "--image-index": i,
+                        "--image-count": active.images.length,
+                      }}>
+                      <button
+                        className="gallery-photo-button"
+                        type="button"
+                        onClick={() => setSelectedImage(i)}
+                        aria-label={"View " + name + " image"}>
+                        <img src={image} alt={name + " design image"} />
+                      </button>
+                      <figcaption></figcaption>
+                    </figure>
+                  ))}
+                </div>
+                <div className="folder-dialog-foot">
+                  <button onClick={closeFolder}>BACK TO FOLDERS ↑</button>
+                </div>
               </div>
             </div>
-          </div>,
+            {selectedImage !== null && (
+              <div
+                className="image-lightbox"
+                role="presentation"
+                onMouseDown={(e) => {
+                  if (e.target === e.currentTarget) setSelectedImage(null);
+                }}>
+                <div
+                  className="image-lightbox-dialog"
+                  role="dialog"
+                  aria-modal="true"
+                  aria-label={active.images[selectedImage][0] + " image"}>
+                  <button
+                    className="image-lightbox-close"
+                    type="button"
+                    onClick={() => setSelectedImage(null)}
+                    aria-label="Close image">
+                    ×
+                  </button>
+                  <button
+                    className="image-lightbox-arrow"
+                    type="button"
+                    onClick={() =>
+                      setSelectedImage(
+                        (index) =>
+                          (index - 1 + active.images.length) %
+                          active.images.length,
+                      )
+                    }
+                    aria-label="Previous image">
+                    ←
+                  </button>
+                  <img
+                    src={active.images[selectedImage][1]}
+                    alt={active.images[selectedImage][0] + " design image"}
+                  />
+                  <button
+                    className="image-lightbox-arrow"
+                    type="button"
+                    onClick={() =>
+                      setSelectedImage(
+                        (index) => (index + 1) % active.images.length,
+                      )
+                    }
+                    aria-label="Next image">
+                    →
+                  </button>
+                </div>
+              </div>
+            )}
+          </>,
           document.body,
         )}
     </section>

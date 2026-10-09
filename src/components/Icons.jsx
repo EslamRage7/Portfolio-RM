@@ -1,6 +1,12 @@
 const shapes = {
   arrowUpRight: <path d="M7 17 17 7M7 7h10v10" />,
   arrowDown: <path d="M12 4v16m0 0 7-7m-7 7-7-7" />,
+  mail: (
+    <>
+      <rect x="3" y="5" width="18" height="14" rx="2" />
+      <path d="m3 7 9 6 9-6" />
+    </>
+  ),
   download: (
     <>
       <path d="M12 3v12m0 0 5-5m-5 5-5-5" />
