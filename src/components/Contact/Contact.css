@@ -94,9 +94,17 @@
   background: #514bff;
   transform: translateY(-2px);
 }
+.contact-layout form button:disabled {
+  cursor: wait;
+  opacity: 0.7;
+  transform: none;
+}
 .contact-layout form > span {
   font: 10px var(--mono);
   color: #252a1e;
+}
+.contact-layout form > .contact-form-error {
+  color: #8b1717;
 }
 @media (max-width: 650px) {
   .contact-layout {

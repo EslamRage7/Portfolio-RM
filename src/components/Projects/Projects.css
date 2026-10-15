@@ -496,7 +496,7 @@ body.folder-overlay-active {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(12px, 3vw, 40px);
+  /* gap: clamp(12px, 3vw, 40px); */
   width: 100%;
   height: 100%;
 }
@@ -521,8 +521,9 @@ body.folder-overlay-active {
 }
 .image-lightbox-close {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 4px;
+  line-height: 0;
+  right: 50px;
   width: 44px;
   height: 44px;
   font-size: 30px;
@@ -614,8 +615,8 @@ body.folder-overlay-active {
     border-width: 4px;
   }
   .image-lightbox-close {
-    top: -4px;
-    right: -4px;
+    top: 4px;
+    right: 22px;
     width: 38px;
     height: 38px;
   }
@@ -702,7 +703,7 @@ body.folder-overlay-active {
 }
 .project-carousel-stage {
   position: relative;
-  height: 310px;
+  height: 340px;
   transform-style: preserve-3d;
 }
 .project-slide {
@@ -710,7 +711,7 @@ body.folder-overlay-active {
   top: 18px;
   left: 50%;
   width: clamp(260px, 46vw, 500px);
-  height: 250px;
+  height: 300px;
   transform-style: preserve-3d;
   transition:
     transform 0.65s cubic-bezier(0.2, 0.75, 0.25, 1),
@@ -719,8 +720,23 @@ body.folder-overlay-active {
   backface-visibility: hidden;
 }
 .project-slide .folder-card {
-  height: 100%;
+  width: 100%;
+  height: 250px;
   filter: drop-shadow(0 24px 28px #090a1740);
+}
+.project-slide-title {
+  position: absolute;
+  top: 280px;
+  left: 0;
+  width: 100%;
+  margin: 0;
+  color: #f4f2ff;
+  font:
+    16px "Archivo Black",
+    sans-serif;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
 }
 .project-slide-active {
   z-index: 3;
@@ -805,12 +821,19 @@ body.folder-overlay-active {
 }
 @media (max-width: 700px) {
   .project-carousel-stage {
-    height: 260px;
+    height: 290px;
   }
   .project-slide {
     top: 15px;
     width: min(72vw, 360px);
+    height: 255px;
+  }
+  .project-slide .folder-card {
     height: 220px;
+  }
+  .project-slide-title {
+    top: 239px;
+    font-size: 13px;
   }
   .project-slide-active {
     transform: translateX(-50%) translateZ(55px) scale(1.01);

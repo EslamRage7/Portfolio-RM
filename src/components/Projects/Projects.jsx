@@ -140,14 +140,20 @@ export default function Projects() {
                 }>
                 <span className="folder-tab" />
                 <span className="folder-paper">
-                  <b>{folder.name}</b>
                   <span className="folder-preview">
                     {folder.images.slice(0, 2).map(([name, image]) => (
-                      <img key={name} src={image} alt="" />
+                      <img
+                        key={name}
+                        src={image}
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                      />
                     ))}
                   </span>
                 </span>
               </button>
+              <p className="project-slide-title">{folder.name}</p>
             </div>
           ))}
         </div>
@@ -208,7 +214,12 @@ export default function Projects() {
                         type="button"
                         onClick={() => setSelectedImage(i)}
                         aria-label={"View " + name + " image"}>
-                        <img src={image} alt={name + " design image"} />
+                        <img
+                          src={image}
+                          alt={name + " design image"}
+                          loading="lazy"
+                          decoding="async"
+                        />
                       </button>
                       <figcaption></figcaption>
                     </figure>
@@ -254,6 +265,8 @@ export default function Projects() {
                   <img
                     src={active.images[selectedImage][1]}
                     alt={active.images[selectedImage][0] + " design image"}
+                    loading="eager"
+                    decoding="async"
                   />
                   <button
                     className="image-lightbox-arrow"

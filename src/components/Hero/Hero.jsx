@@ -2,7 +2,13 @@ import { useEffect, useRef, useState } from "react";
 import reem from "../../assets/reem.jpg";
 import Icon from "../Icons.jsx";
 import "./Hero.css";
-const phrases = ["branding", "UI / UX", "digital design"];
+const phrases = [
+  "UI / UX",
+  "digital design ",
+  "branding",
+  "graphic design",
+  "web design",
+];
 export default function Hero() {
   const [text, setText] = useState(() =>
     window.matchMedia("(prefers-reduced-motion: reduce)").matches
