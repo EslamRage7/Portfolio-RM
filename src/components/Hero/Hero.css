@@ -520,10 +520,19 @@
 
 .intro-portrait {
   flex-shrink: 1;
+  /* Let the portrait give up layout space as the animated heading grows. */
+  flex-basis: calc(33.333% * var(--image-scale, 1));
+  width: auto;
   transition:
     max-width 0.35s ease,
+    flex-basis 0.35s ease,
     height 0.35s ease,
     transform 0.35s ease;
+}
+@media (min-width: 992px) {
+  .intro-portrait {
+    flex: 0 1 calc(33.333% * var(--image-scale, 1));
+  }
 }
 @media (min-width: 992px) and (max-width: 1199.98px) {
   .intro-main {
@@ -604,7 +613,7 @@
     --bs-gutter-x: 5rem;
   }
   .intro h1 {
-    font-size: clamp(54px, 7.5vw, 104px);
+    font-size: clamp(54px, 6.5vw, 104px);
   }
 }
 @media (min-width: 992px) and (max-width: 1199.98px) {
