@@ -1,1 +1,38 @@
-.site-background{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;background:#0b0d1b}.site-gradient{position:absolute;inset:0;background:radial-gradient(ellipse at 14% 8%,#37326a72 0,transparent 42%),radial-gradient(ellipse at 87% 35%,#242e5875 0,transparent 43%),radial-gradient(ellipse at 45% 100%,#27204e88 0,transparent 53%),linear-gradient(130deg,#0b0d1b 0%,#111326 52%,#101222 100%)}#portfolio-particles{position:absolute;inset:0;opacity:.78}#portfolio-particles canvas{display:block;pointer-events:none!important}@media(prefers-reduced-motion:reduce){#portfolio-particles{display:none}}
+.site-background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background: #0b0d1b;
+}
+
+.site-gradient {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 14% 8%, #37326a90 0, transparent 42%),
+    radial-gradient(ellipse at 87% 35%, #242e5890 0, transparent 43%),
+    radial-gradient(ellipse at 45% 100%, #27204ea0 0, transparent 53%),
+    linear-gradient(130deg, #0b0d1b 0%, #111326 52%, #101222 100%);
+}
+
+/* Animated particles */
+#portfolio-particles {
+  position: absolute;
+  inset: 0;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Canvas interaction */
+#portfolio-particles canvas {
+  display: block;
+  pointer-events: auto !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #portfolio-particles {
+    display: none;
+  }
+}

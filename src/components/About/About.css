@@ -83,7 +83,7 @@
 }
 .about-facts strong i {
   font-style: normal;
-  color: #d9ff37;
+
   font-size: 22px;
 }
 .about-facts span {
@@ -120,14 +120,12 @@
 @media (max-width: 767.98px) {
   .about-section .about-layout {
     grid-template-columns: 1fr;
-    justify-items: center;
+    /* justify-items: center; */
     gap: 24px;
     padding: 48px 0 38px;
     text-align: center;
   }
-  .about-section .about-layout h2 {
-    text-align: center;
-  }
+
   .about-section .about-copy {
     max-width: 720px;
     display: flex;
@@ -253,7 +251,6 @@
   }
   .about-section .about-layout h2 {
     font-size: clamp(40px, 10vw, 58px);
-    text-align: center;
   }
   .about-section .about-copy {
     width: 100%;
