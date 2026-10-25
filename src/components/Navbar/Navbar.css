@@ -61,22 +61,42 @@
 .nav-cube .nav-cube-front,
 .nav-cube .nav-cube-back {
   color: #e8e1ff;
-  font: 800 18px/1 Manrope, sans-serif;
+  font:
+    800 18px/1 Manrope,
+    sans-serif;
   text-shadow: 0 0 12px #a996ffb0;
 }
 
 .nav-cube .nav-cube-right {
   color: #e8e1ff;
-  font: 800 16px/1 Manrope, sans-serif;
+  font:
+    800 16px/1 Manrope,
+    sans-serif;
   text-shadow: 0 0 12px #a996ffb0;
 }
 
-.nav-cube .nav-cube-front { transform: translateZ(15px); }
-.nav-cube .nav-cube-back { transform: rotateY(180deg) translateZ(15px); }
-.nav-cube .nav-cube-right { transform: rotateY(90deg) translateZ(15px); background: #a996ff55; }
-.nav-cube .nav-cube-left { transform: rotateY(-90deg) translateZ(15px); background: #8172db55; }
-.nav-cube .nav-cube-top { transform: rotateX(90deg) translateZ(15px); background: #c3b7ff55; }
-.nav-cube .nav-cube-bottom { transform: rotateX(-90deg) translateZ(15px); background: #51478f88; }
+.nav-cube .nav-cube-front {
+  transform: translateZ(15px);
+}
+.nav-cube .nav-cube-back {
+  transform: rotateY(180deg) translateZ(15px);
+}
+.nav-cube .nav-cube-right {
+  transform: rotateY(90deg) translateZ(15px);
+  background: #a996ff55;
+}
+.nav-cube .nav-cube-left {
+  transform: rotateY(-90deg) translateZ(15px);
+  background: #8172db55;
+}
+.nav-cube .nav-cube-top {
+  transform: rotateX(90deg) translateZ(15px);
+  background: #c3b7ff55;
+}
+.nav-cube .nav-cube-bottom {
+  transform: rotateX(-90deg) translateZ(15px);
+  background: #51478f88;
+}
 
 .nav-items {
   display: flex;

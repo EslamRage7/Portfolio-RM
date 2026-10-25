@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import reem from "../../assets/reem.jpg";
+import reem from "../../assets/Gemini_Generated_Image_6mflxn6mflxn6mfl.jpg";
 import Icon from "../Icons.jsx";
 import "./Hero.css";
 const phrases = [
