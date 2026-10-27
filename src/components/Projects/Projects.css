@@ -114,7 +114,7 @@
 .folder-tab {
   position: absolute;
   z-index: 1;
-  top: 14%;
+  top: 10%;
   left: 0;
   width: 36%;
   height: 20px;
@@ -125,7 +125,7 @@
 .folder-card:hover .folder-tab,
 .folder-card:focus-visible .folder-tab,
 .folder-card.folder-active .folder-tab {
-  transform: translateY(-30px);
+  transform: translateY(-15px);
 }
 .folder-orange .folder-tab {
   background: #ffb27c;
