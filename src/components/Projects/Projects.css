@@ -114,12 +114,18 @@
 .folder-tab {
   position: absolute;
   z-index: 1;
-  top: -8px;
+  top: 14%;
   left: 0;
   width: 36%;
   height: 20px;
   background: #d4b7ff;
   clip-path: polygon(0 0, 78% 0, 100% 100%, 0 100%);
+  transition: transform 0.3s ease;
+}
+.folder-card:hover .folder-tab,
+.folder-card:focus-visible .folder-tab,
+.folder-card.folder-active .folder-tab {
+  transform: translateY(-30px);
 }
 .folder-orange .folder-tab {
   background: #ffb27c;
